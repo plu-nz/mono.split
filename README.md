@@ -1,8 +1,8 @@
 # Split
 
-**Split** helps a group divide a large restaurant bill without accounts. Open [split.plu.nz](https://split.plu.nz/), add items and people, assign each line to the people who shared it, and copy the result. The sum of person totals always matches the full bill in integer minor units when every item is assigned.
+**Split** helps a group divide a large restaurant bill without accounts. Open [split.plu.nz](https://split.plu.nz/), add items and people, optionally enter the printed total as a check, assign each line to the people who shared it, and copy the result. The sum of person totals always matches the full bill in integer minor units when every item is assigned.
 
-A receipt photo can be scanned with Cloudflare Workers AI. The model returns **suggestions only**: review and correct every name, quantity, and price before adding them. Manual entry works without AI. The bill and participant names are stored only in this browser for up to seven days; a photo is sent to Cloudflare for a requested scan and is not stored by Split. There are no accounts, payments, restaurant integrations, or shared bill links.
+A receipt photo can be scanned with Cloudflare Workers AI. The model returns **suggestions only**: review and correct every name, quantity, and price before adding them. Manual entry works without AI. The bill and participant names are stored only in this browser for up to seven days; a resized photo is sent to Cloudflare for a requested scan and is not stored by Split. There are no accounts, payments, restaurant integrations, or shared bill links.
 
 ## Stack and cost
 
