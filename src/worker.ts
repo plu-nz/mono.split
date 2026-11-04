@@ -1,5 +1,5 @@
 import { Hono } from 'hono';
-import { imageMime, parseScanAnswer } from './scan';
+import { answerFromAiStream, imageMime, parseScanAnswer } from './scan';
 
 interface Env {
   AI: Ai;
@@ -48,14 +48,17 @@ app.post('/api/scan', async c => {
   if (!mime) return c.json({ error: 'Use a JPEG, PNG, or WebP image.' }, 415);
   let binary = '';
   for (let i = 0; i < bytes.length; i += 8192) binary += String.fromCharCode(...bytes.subarray(i, i + 8192));
+  let phase = 'inference';
   try {
     const output = await c.env.AI.run('@cf/moondream/moondream3.1-9B-A2B', {
       task: 'query', image: `data:${mime};base64,${btoa(binary)}`, reasoning: false, temperature: 0, max_tokens: 2500,
       question: 'Read this restaurant bill or receipt. Return ONLY JSON in this shape: {"items":[{"name":"item description","quantity":1,"unitPrice":"12.34"}]}. Include actual purchased line items and explicit service/tax lines if separately charged. Do not invent missing lines, quantities, or prices. Use decimal point and exactly two decimal places for unitPrice. If a line is unclear, omit it. Do not include totals, subtotals, payment lines, card details, personal data, or commentary.',
     });
-    const answer = 'answer' in output && typeof output.answer === 'string' ? output.answer : '';
+    phase = 'parse';
+    const answer = output instanceof ReadableStream ? answerFromAiStream(await new Response(output).text()) : ('answer' in output && typeof output.answer === 'string' ? output.answer : '');
     return c.json(parseScanAnswer(answer), 200, { 'Cache-Control': 'no-store' });
-  } catch {
+  } catch (error) {
+    console.error('receipt_scan_failed', phase, error instanceof Error ? error.name : 'unknown');
     return c.json({ error: 'Could not read this receipt. Try another image or enter items manually.' }, 503, { 'Cache-Control': 'no-store' });
   }
 });

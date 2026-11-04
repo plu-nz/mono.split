@@ -35,3 +35,23 @@ export function imageMime(bytes: Uint8Array): 'image/jpeg' | 'image/png' | 'imag
   if (bytes.length >= 12 && String.fromCharCode(...bytes.slice(0, 4)) === 'RIFF' && String.fromCharCode(...bytes.slice(8, 12)) === 'WEBP') return 'image/webp';
   return null;
 }
+
+export function answerFromAiStream(streamText: string): string {
+  let answer = '';
+  for (const line of streamText.split('\n')) {
+    if (!line.startsWith('data: ') || line === 'data: [DONE]') continue;
+    let event: unknown;
+    try { event = JSON.parse(line.slice(6)); } catch { continue; }
+    if (!event || typeof event !== 'object') continue;
+    const payload = event as Record<string, unknown>;
+    if (payload.chunk && typeof payload.chunk === 'object') {
+      const chunk = payload.chunk as Record<string, unknown>;
+      if (typeof chunk.answer === 'string') answer = chunk.answer;
+    }
+    if (Array.isArray(payload.output)) {
+      const last = payload.output.at(-1);
+      if (last && typeof last === 'object' && typeof (last as Record<string, unknown>).answer === 'string') answer = (last as Record<string, unknown>).answer as string;
+    }
+  }
+  return answer;
+}
