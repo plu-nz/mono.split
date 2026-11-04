@@ -10,6 +10,13 @@ A receipt photo can be scanned with Cloudflare Workers AI. The model returns **s
 - A small Hono Worker serves the SPA and `/api/scan`; Cloudflare Workers AI Moondream 3.1 reads a receipt image.
 - No database, object storage, or self-hosted service. The scan endpoint is limited to five requests per minute per source IP and images under 4 MB. Free AI quota exhaustion returns an error; manual entry remains available. Check [Cloudflare Workers AI pricing](https://developers.cloudflare.com/workers-ai/platform/pricing/) before changing models or account plan.
 - Darkppuccin colors and a square product mark follow the [PLUNZ visual proposal](https://github.com/plu-nz/.github/pull/2). The UI is mobile first with bottom step navigation.
+- Split follows the [PLUNZ mobile-first and installability decision](https://github.com/plu-nz/.github/blob/main/decisions/2026-11-04-mobile-first-and-installable-apps.md): a web app manifest, product icons, and a service worker let the app launch from a smartphone home screen.
+
+## Installation and offline use
+
+On Android, use your browser's **Install app** or **Add to Home screen** action. On iPhone in Safari, use **Share → Add to Home Screen**. Browser menus differ, and an automatic install prompt is not guaranteed. Installed Split opens in standalone mode.
+
+The service worker precaches the app shell and static assets. After the first successful online visit and service-worker installation, manual bill entry, allocation, draft restore, and result copying work offline. Scanning a receipt needs a connection to Cloudflare Workers AI. Receipt photos, API responses, bill details, and participant names are never placed in the service-worker cache. The draft remains in browser local storage for up to seven days; clearing site data or uninstalling the app may remove it. Updates are applied on a later visit so an active bill is not unexpectedly reloaded.
 
 ## Development
 
@@ -37,4 +44,4 @@ pnpm exec wrangler deploy --dry-run
 pnpm exec wrangler deploy
 ```
 
-Check `/api/healthz`, the app, a real scan, an uneven split, and mobile/keyboard behavior after deployment. No OAuth or secret is required. See the [source index](src/README.md) and [public assets index](public/README.md).
+Check `/api/healthz`, the app, manifest and icon URLs, home-screen installation, offline manual splitting, a real scan while online, an uneven split, and mobile/keyboard behavior after deployment. No OAuth or secret is required. See the [source index](src/README.md) and [public assets index](public/README.md).

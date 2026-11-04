@@ -6,3 +6,4 @@
 
 .scan-actions{grid-column:1/-1;display:flex;align-items:center;gap:10px;flex-wrap:wrap}.scan-button{display:inline-flex;align-items:center;justify-content:center;min-width:132px;cursor:pointer;text-align:center;white-space:nowrap}.scan-button.busy{opacity:.6;cursor:wait}.scan-progress{color:var(--muted);font-size:12px}
 @media(max-width:420px){.scan-actions{display:grid;grid-template-columns:1fr 1fr}.scan-button{min-width:0;padding-inline:8px;white-space:normal}.scan-progress{grid-column:1/-1}}
+.install-note{border-top:1px solid var(--line);padding-top:26px;margin-top:26px}.install-note span{color:var(--green);font-size:10px;font-weight:750;letter-spacing:.16em}.install-note p{max-width:520px;color:var(--muted);font-size:12px;line-height:1.6;margin:9px 0 0}@media(display-mode:standalone){.install-note{display:none}}
