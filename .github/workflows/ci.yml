@@ -10,6 +10,6 @@ permissions:
 
 jobs:
   quality:
-    uses: plu-nz/ops.workflows/.github/workflows/pnpm-ci.yml@217bd71045fbf2187948093d38f42dd451dfb896
+    uses: plu-nz/ops.workflows/.github/workflows/pnpm-ci.yml@faf3ecd588128859fa66c6de24364174bf6e574c
     with:
       verify-script: test
