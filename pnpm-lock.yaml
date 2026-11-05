@@ -166,6 +166,9 @@ importers:
 
   .:
     dependencies:
+      '@plunz/storybook':
+        specifier: github:plu-nz/lib.storybook#3449d90
+        version: https://codeload.github.com/plu-nz/lib.storybook/tar.gz/3449d901435c28c965d8b40e2bc3159019f72556(solid-js@1.9.18)
       hono:
         specifier: ^4.13.16
         version: 4.13.16
@@ -1180,6 +1183,12 @@ packages:
     cpu: [x64]
     os: [linux]
     libc: [glibc]
+
+  '@plunz/storybook@https://codeload.github.com/plu-nz/lib.storybook/tar.gz/3449d901435c28c965d8b40e2bc3159019f72556':
+    resolution: {gitHosted: true, integrity: sha512-K9yZKHiIMc3e/qIJTxakbmS/WsASrVaKS07rkBSj4o77uA82TSPbm0JshwcRwnwj76vvA5UytIKCvxeDKQu5Tg==, tarball: https://codeload.github.com/plu-nz/lib.storybook/tar.gz/3449d901435c28c965d8b40e2bc3159019f72556}
+    version: 0.1.0
+    peerDependencies:
+      solid-js: ^1.9.0
 
   '@poppinss/colors@4.1.6':
     resolution: {integrity: sha512-H9xkIdFswbS8n1d6vmRd8+c10t2Qe+rZITbbDHHkQixH5+2x1FDGmi/0K+WgWiqQFKPSlIYB7jlH6Kpfn6Fleg==}
@@ -3672,6 +3681,10 @@ snapshots:
 
   '@napi-rs/lzma-linux-x64-gnu@1.5.1':
     optional: true
+
+  '@plunz/storybook@https://codeload.github.com/plu-nz/lib.storybook/tar.gz/3449d901435c28c965d8b40e2bc3159019f72556(solid-js@1.9.18)':
+    dependencies:
+      solid-js: 1.9.18
 
   '@poppinss/colors@4.1.6':
     dependencies:

@@ -8,7 +8,7 @@ A receipt photo can be scanned with Cloudflare Workers AI. The model returns **s
 
 ## Stack and cost
 
-- SolidJS, TypeScript, and Vite for the UI.
+- SolidJS, TypeScript, and Vite for the UI. Shared `Theme`, `Card`, `TextField`, and `Button` primitives come from a pinned `@plunz/storybook` Git revision; bill-specific controls remain local.
 - A small Hono Worker serves the SPA and `/api/scan`; Cloudflare Workers AI Moondream 3.1 reads a receipt image.
 - No database, object storage, or self-hosted service. The scan endpoint is limited to five requests per minute per source IP and images under 4 MB. Free AI quota exhaustion returns an error; manual entry remains available. Check [Cloudflare Workers AI pricing](https://developers.cloudflare.com/workers-ai/platform/pricing/) before changing models or account plan.
 - Darkppuccin colors and a square product mark follow the [PLUNZ visual proposal](https://github.com/plu-nz/.github/pull/2). The UI is mobile first with bottom step navigation.

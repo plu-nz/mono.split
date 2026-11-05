@@ -4,7 +4,7 @@ Read this repository's `README.md`, the [PLUNZ shared context](https://github.co
 
 ## Architecture and responsibilities
 
-- `src/App.tsx` and `src/style.css` implement the mobile-first SolidJS interface.
+- `src/App.tsx` and `src/style.css` implement the mobile-first SolidJS interface. Shared `Theme`, `Card`, `TextField`, and `Button` primitives come from the pinned `@plunz/storybook` dependency; keep bill-specific controls local.
 - `src/core.ts` implements exact integer-cent allocation. Keep it independent of UI and network code.
 - `src/worker.ts` is the Hono Worker for static assets and receipt scanning; `src/scan.ts` validates model output. It has no database or persistent bill storage.
 - `public/` contains the product favicon and smartphone icons. `vite.config.ts` generates the manifest and service worker. `wrangler.jsonc` declares the Cloudflare Worker, AI binding, rate limit, and domain.

@@ -11,6 +11,7 @@
     "deploy": "pnpm run build && wrangler deploy"
   },
   "dependencies": {
+    "@plunz/storybook": "github:plu-nz/lib.storybook#3449d90",
     "hono": "^4.13.16",
     "solid-js": "^1.9.0"
   },
