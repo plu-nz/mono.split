@@ -17,6 +17,7 @@ Read this repository's `README.md`, the [PLUNZ shared context](https://github.co
 - Keep bills and names local to the browser. Do not log or persist receipt photos, line items, or participant names on the Worker. Add a provider or dependency only for a concrete feature need.
 - Keep receipt photos, `/api/*` responses, and bill data out of the service-worker cache. Preserve offline manual splitting and installation when changing assets or routing.
 - Follow the nearby code style. Keep every directory indexed by a `README.md`.
+- The UI runs Solid 2 (`solid-js` and `@solidjs/web` 2.x). Solid 2 is not Solid 1: read `node_modules/solid-js/CHEATSHEET.md` before writing Solid code. Effects take a compute and an apply function, and a signal write shows on the next flush, so code that changes the draft builds on the latest values it wrote, not on a signal read right after writing it.
 
 ## Commands and completion checks
 

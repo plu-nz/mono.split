@@ -74,9 +74,12 @@ export function useLocale() {
     window.removeEventListener('focus', refreshPreference);
     window.removeEventListener('pageshow', refreshPreference);
   });
-  createEffect(() => {
-    document.documentElement.lang = locale();
-    document.querySelector('meta[name="description"]')?.setAttribute('content', t('Scan a receipt or enter items, add your people, and see exactly who owes what. No account needed.'));
-  });
+  createEffect(
+    () => ({ lang: locale(), description: t('Scan a receipt or enter items, add your people, and see exactly who owes what. No account needed.') }),
+    ({ lang, description }) => {
+      document.documentElement.lang = lang;
+      document.querySelector('meta[name="description"]')?.setAttribute('content', description);
+    },
+  );
   return { locale, preference, t, changeLanguage };
 }

@@ -11,18 +11,19 @@
     "deploy": "pnpm run build && wrangler deploy"
   },
   "dependencies": {
-    "@plunz/storybook": "github:plu-nz/lib.storybook#3449d90",
+    "@plunz/storybook": "github:plu-nz/lib.storybook#9d6dc67",
+    "@solidjs/web": "^2.0.3",
     "hono": "^4.13.16",
-    "solid-js": "^1.9.0"
+    "solid-js": "^2.0.3"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^5.20261103.1",
+    "@solidjs/vite-plugin": "^3.0.1",
     "@types/node": "^24.0.0",
     "jsdom": "^30.1.3",
     "typescript": "^5.9.0",
-    "vite": "^7.3.0",
+    "vite": "^8.3.8",
     "vite-plugin-pwa": "^2.0.0",
-    "vite-plugin-solid": "^2.11.0",
     "vitest": "^5.1.0",
     "wrangler": "^4.157.0"
   }
