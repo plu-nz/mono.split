@@ -150,11 +150,9 @@ export default function App() {
 function QuantityControl(props: { id: string; value: number; onChange: (value: number) => void; increaseLabel: string; decreaseLabel: string }) {
   const clamp = (value: number) => Math.max(1, Math.min(999, Math.trunc(value || 1)));
   return <div class="quantity-control">
+    <button type="button" aria-label={props.decreaseLabel} disabled={props.value <= 1} onClick={() => props.onChange(clamp(props.value - 1))}>−</button>
     <input id={props.id} class="text-input" type="number" inputmode="numeric" min="1" max="999" step="1" value={props.value} onChange={event => { const value = clamp(Number(event.currentTarget.value)); event.currentTarget.value = String(value); props.onChange(value); }} />
-    <div class="quantity-steps">
-      <button type="button" aria-label={props.increaseLabel} disabled={props.value >= 999} onClick={() => props.onChange(clamp(props.value + 1))}>+</button>
-      <button type="button" aria-label={props.decreaseLabel} disabled={props.value <= 1} onClick={() => props.onChange(clamp(props.value - 1))}>−</button>
-    </div>
+    <button type="button" aria-label={props.increaseLabel} disabled={props.value >= 999} onClick={() => props.onChange(clamp(props.value + 1))}>+</button>
   </div>;
 }
 

@@ -64,3 +64,13 @@
 .new-bill-button{flex:none;white-space:nowrap;cursor:pointer}
 
 .review-panel{border:0;padding:0;margin:0 0 16px}
+
+.quantity-control{grid-template-columns:32px minmax(0,1fr) 32px}
+.quantity-control>button{padding:0;border:0;background:var(--surface);color:var(--green);font-size:18px;font-weight:700}
+.quantity-control>button:first-child{border-right:1px solid var(--line)}
+.quantity-control>button:last-child{border-left:1px solid var(--line)}
+.quantity-control>button:hover:not(:disabled){background:var(--line);color:var(--text)}
+.quantity-control>button:disabled{color:var(--soft);cursor:default}
+.candidate-fields{grid-template-columns:minmax(100px,1fr) minmax(0,2fr) 44px}
+.item-card:not(.candidate-card) .item-fields{grid-template-columns:minmax(100px,1fr) minmax(0,2fr)}
+.item-card:not(.candidate-card) .item-fields>label:first-child{grid-column:1/-1}
