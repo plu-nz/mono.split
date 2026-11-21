@@ -50,7 +50,7 @@ app.post('/api/scan', async c => {
   for (let i = 0; i < bytes.length; i += 8192) binary += String.fromCharCode(...bytes.subarray(i, i + 8192));
   if (!c.env.GEMINI_API_KEY) return c.json({ error: 'Receipt scanning is unavailable. Enter items manually.' }, 503, { 'Cache-Control': 'no-store' });
   try {
-    const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent', {
+    const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'x-goog-api-key': c.env.GEMINI_API_KEY },
       signal: AbortSignal.timeout(30000),

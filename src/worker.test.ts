@@ -16,7 +16,7 @@ it('sends the receipt to Gemini and validates its response', async () => {
   const response = await run();
   expect(await response.json()).toEqual({ items: [{ name: 'Tea', quantity: 2, unitCents: 350 }], warnings: [] });
   const [url, options] = fetchMock.mock.calls[0];
-  expect(url).toContain('gemini-2.5-flash-lite:generateContent');
+  expect(url).toContain('gemini-3.1-flash-lite:generateContent');
   expect(options.headers['x-goog-api-key']).toBe('test-key');
   expect(JSON.parse(options.body).contents[0].parts[1].inlineData.mimeType).toBe('image/jpeg');
 });
