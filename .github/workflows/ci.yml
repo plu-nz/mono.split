@@ -4,6 +4,7 @@ on:
   pull_request:
   push:
     branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -13,3 +14,13 @@ jobs:
     uses: plu-nz/ops.workflows/.github/workflows/pnpm-ci.yml@faf3ecd588128859fa66c6de24364174bf6e574c
     with:
       verify-script: test
+
+  deploy:
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    needs: quality
+    uses: plu-nz/ops.workflows/.github/workflows/cloudflare-worker.yml@faf3ecd588128859fa66c6de24364174bf6e574c
+    with:
+      account-id: d9843893c0daa49287456b9efb2cd021
+      healthcheck-url: https://split.plu.nz/api/healthz
+    secrets:
+      cloudflare-api-token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
