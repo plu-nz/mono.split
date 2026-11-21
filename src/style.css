@@ -19,3 +19,33 @@
 .quantity-steps button:hover:not(:disabled){background:var(--line);color:var(--text)}
 .quantity-steps button:disabled{color:var(--soft);cursor:default}
 .item-fields .quantity-field>label{display:block;margin:0;color:var(--muted);font-size:11px;font-weight:700}
+
+/* Keep the bill workspace close to the top and compact on small screens. */
+.topbar{height:60px}
+.main-content{padding-top:20px;padding-bottom:100px}
+.workspace{padding:24px}
+.section-head{align-items:center;margin-bottom:18px}
+.section-kicker{margin-bottom:5px}
+.section-head h2{font-size:clamp(24px,4vw,32px)}
+.step-badge{display:none}
+.optional-fields{margin-bottom:16px}
+.optional-fields summary,.footer-note summary{cursor:pointer;color:var(--muted);font-size:12px;font-weight:700;padding:8px 0}
+.optional-fields summary span{font-weight:400}
+.optional-fields[open] summary{margin-bottom:10px}
+.scan-panel{display:block;margin:0 0 22px;padding:14px}
+.scan-copy h3{font-size:16px;margin:0 0 10px}
+.privacy-note{margin-top:10px}
+.item-card{padding:12px;margin-bottom:8px}
+.item-card-top{margin-bottom:8px}
+.item-subtotal{margin-top:10px;padding-top:8px}
+.add-button{padding:9px 12px;min-height:44px}
+.total-row{margin-top:18px;padding-top:12px}
+.assignment-card{padding:14px;margin-bottom:8px}
+.assignment-head h3{font-size:17px;margin:5px 0 3px}
+.person-chips{margin-top:10px}
+.result-panel{margin-top:18px;padding:16px}
+.result-person{padding:9px 0}
+.footer-note{margin-top:16px;padding-top:8px;display:flex;align-items:start;justify-content:space-between;gap:12px}
+.footer-note details{flex:1}
+.bottom-nav button{min-height:48px}
+@media(max-width:600px){.topbar{height:56px}.main-content{padding:12px 12px 90px}.workspace{padding:16px 12px}.section-head{margin-bottom:14px}.scan-panel{padding:12px}.assignment-card{padding:12px}.result-panel{padding:14px}}
