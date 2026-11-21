@@ -74,3 +74,8 @@
 .candidate-fields{grid-template-columns:minmax(116px,2fr) minmax(0,3fr) 44px}
 .item-card:not(.candidate-card) .item-fields{grid-template-columns:minmax(116px,2fr) minmax(0,3fr)}
 .item-card:not(.candidate-card) .item-fields>label:first-child{grid-column:1/-1}
+
+.scan-loading{display:flex;align-items:center;gap:12px;margin-top:14px;padding:14px;border:1px solid var(--blue);background:rgba(137,180,250,.08);color:var(--text);font-size:14px;font-weight:700}
+.scan-spinner{width:22px;height:22px;flex:none;border:3px solid var(--line);border-top-color:var(--blue);border-radius:50%;animation:scan-spin .8s linear infinite}
+@keyframes scan-spin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.scan-spinner{animation:none;border-right-color:var(--blue)}}

@@ -4,7 +4,7 @@
 
 The interface supports English, Portuguese, and Spanish. It follows the browser language by default, falls back to English, and shares a manually selected language with PLUNZ web apps on `plu.nz` in the same browser.
 
-A receipt photo can be scanned with Google Gemini. Google may use photos submitted on the free tier to improve its products. The model returns **suggestions only**: review and correct every name, quantity, and price before adding them. Manual entry works without AI. The bill and participant names are stored only in this browser for up to seven days; a resized photo is sent to Google Gemini for a requested scan and is not stored by Split. There are no accounts, payments, restaurant integrations, or shared bill links.
+A receipt photo can be scanned with Google Gemini. Google may use photos submitted on the free tier to improve its products. The model returns **suggestions only**: review and correct every name, quantity, and price before splitting the bill. Manual entry works without AI. The bill and participant names are stored only in this browser for up to seven days; a resized photo is sent to Google Gemini for a requested scan and is not stored by Split. There are no accounts, payments, restaurant integrations, or shared bill links.
 
 ## Stack and cost
 
