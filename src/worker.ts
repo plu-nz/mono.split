@@ -1,8 +1,8 @@
 import { Hono } from 'hono';
-import { answerFromAiStream, imageMime, parseScanAnswer } from './scan';
+import { imageMime, parseScanAnswer } from './scan';
 
 interface Env {
-  AI: Ai;
+  GEMINI_API_KEY?: string;
   SCAN_LIMIT: { limit(options: { key: string }): Promise<{ success: boolean }> };
   ASSETS: { fetch(request: Request): Promise<Response> };
 }
@@ -48,17 +48,29 @@ app.post('/api/scan', async c => {
   if (!mime) return c.json({ error: 'Use a JPEG, PNG, or WebP image.' }, 415);
   let binary = '';
   for (let i = 0; i < bytes.length; i += 8192) binary += String.fromCharCode(...bytes.subarray(i, i + 8192));
-  let phase = 'inference';
+  if (!c.env.GEMINI_API_KEY) return c.json({ error: 'Receipt scanning is unavailable. Enter items manually.' }, 503, { 'Cache-Control': 'no-store' });
   try {
-    const output = await c.env.AI.run('@cf/moondream/moondream3.1-9B-A2B', {
-      task: 'query', image: `data:${mime};base64,${btoa(binary)}`, reasoning: false, temperature: 0, max_tokens: 2500,
-      question: 'Read this restaurant bill or receipt. Return ONLY JSON in this shape: {"items":[{"name":"item description","quantity":1,"unitPrice":"12.34"}]}. Include actual purchased line items and explicit service/tax lines if separately charged. Do not invent missing lines, quantities, or prices. Use decimal point and exactly two decimal places for unitPrice. If a line is unclear, omit it. Do not include totals, subtotals, payment lines, card details, personal data, or commentary.',
+    const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-goog-api-key': c.env.GEMINI_API_KEY },
+      signal: AbortSignal.timeout(30000),
+      body: JSON.stringify({
+        contents: [{ parts: [
+          { text: 'Read this restaurant bill or receipt. Extract purchased line items and separately charged service or tax. Return each name, quantity and unit price. Use the line total divided by quantity when only the line total is shown. Do not invent missing values. Omit totals, subtotals, payments, card details and personal data. Use decimal point for unitPrice.' },
+          { inlineData: { mimeType: mime, data: btoa(binary) } },
+        ] }],
+        generationConfig: { temperature: 0, maxOutputTokens: 4096, responseMimeType: 'application/json', responseSchema: { type: 'OBJECT', properties: { items: { type: 'ARRAY', items: { type: 'OBJECT', properties: { name: { type: 'STRING' }, quantity: { type: 'INTEGER' }, unitPrice: { type: 'STRING' } }, required: ['name', 'quantity', 'unitPrice'] } } }, required: ['items'] } },
+      }),
     });
-    phase = 'parse';
-    const answer = output instanceof ReadableStream ? answerFromAiStream(await new Response(output).text()) : ('answer' in output && typeof output.answer === 'string' ? output.answer : '');
+    if (response.status === 429) return c.json({ error: 'Receipt scanning is busy or its free quota is exhausted. Try again later or enter items manually.' }, 429, { 'Cache-Control': 'no-store' });
+    if (!response.ok) throw new Error('Gemini request failed');
+    const result = await response.json() as { candidates?: Array<{ content?: { parts?: Array<{ text?: string }> }; finishReason?: string }> };
+    const candidate = result.candidates?.[0];
+    if (candidate?.finishReason !== 'STOP') throw new Error('Incomplete Gemini response');
+    const answer = candidate.content?.parts?.map(part => part.text ?? '').join('') ?? '';
     return c.json(parseScanAnswer(answer), 200, { 'Cache-Control': 'no-store' });
   } catch (error) {
-    console.error('receipt_scan_failed', phase, error instanceof Error ? error.name : 'unknown');
+    console.error('receipt_scan_failed', error instanceof Error ? error.name : 'unknown');
     return c.json({ error: 'Could not read this receipt. Try another image or enter items manually.' }, 503, { 'Cache-Control': 'no-store' });
   }
 });
