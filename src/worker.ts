@@ -63,7 +63,7 @@ app.post('/api/scan', async c => {
       }),
     });
     if (response.status === 429) return c.json({ error: 'Receipt scanning is busy or its free quota is exhausted. Try again later or enter items manually.' }, 429, { 'Cache-Control': 'no-store' });
-    if (!response.ok) throw new Error('Gemini request failed');
+    if (!response.ok) { console.error('gemini_request_failed', response.status); throw new Error('Gemini request failed'); }
     const result = await response.json() as { candidates?: Array<{ content?: { parts?: Array<{ text?: string }> }; finishReason?: string }> };
     const candidate = result.candidates?.[0];
     if (candidate?.finishReason !== 'STOP') throw new Error('Incomplete Gemini response');
