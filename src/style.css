@@ -71,6 +71,6 @@
 .quantity-control>button:last-child{border-left:1px solid var(--line)}
 .quantity-control>button:hover:not(:disabled){background:var(--line);color:var(--text)}
 .quantity-control>button:disabled{color:var(--soft);cursor:default}
-.candidate-fields{grid-template-columns:minmax(100px,1fr) minmax(0,2fr) 44px}
-.item-card:not(.candidate-card) .item-fields{grid-template-columns:minmax(100px,1fr) minmax(0,2fr)}
+.candidate-fields{grid-template-columns:minmax(116px,2fr) minmax(0,3fr) 44px}
+.item-card:not(.candidate-card) .item-fields{grid-template-columns:minmax(116px,2fr) minmax(0,3fr)}
 .item-card:not(.candidate-card) .item-fields>label:first-child{grid-column:1/-1}
