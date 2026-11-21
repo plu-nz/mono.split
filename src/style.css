@@ -55,10 +55,12 @@
 .candidate-name .text-input{font-weight:700;min-height:44px;padding:10px}
 .remove-icon{display:grid;place-items:center;flex:none;width:44px;height:44px;padding:0;border:0;background:none;color:var(--muted)}
 .remove-icon:hover{color:var(--red)}
-.candidate-fields{grid-template-columns:minmax(67px,100px) minmax(0,1fr)}
+.candidate-fields{grid-template-columns:minmax(67px,100px) minmax(0,1fr) 44px;align-items:end}
 .review-total{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:14px 0;color:var(--muted);font-size:13px}
 .review-total strong{color:var(--green);font-size:20px}
-.workspace-actions{display:flex;justify-content:flex-end;margin-bottom:8px}
-.workspace-actions .text-button{min-height:36px}
 .workspace{background:none;border:0;padding:0}
 @media(max-width:600px){.workspace{padding:0}}
+
+.new-bill-button{flex:none;white-space:nowrap;cursor:pointer}
+
+.review-panel{border:0;padding:0;margin:0 0 16px}
