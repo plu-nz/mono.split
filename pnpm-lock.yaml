@@ -167,8 +167,8 @@ importers:
   .:
     dependencies:
       '@plunz/storybook':
-        specifier: github:plu-nz/lib.storybook#9d6dc67
-        version: https://codeload.github.com/plu-nz/lib.storybook/tar.gz/9d6dc6758a6e777d4c58a58bff4614e36d300b5a(@solidjs/web@2.0.3(solid-js@2.0.3))(solid-js@2.0.3)
+        specifier: github:plu-nz/lib.storybook#577a0d1
+        version: https://codeload.github.com/plu-nz/lib.storybook/tar.gz/577a0d1f23abc40eb838082e818f54d9c51d6519(@solidjs/web@2.0.3(solid-js@2.0.3))(solid-js@2.0.3)
       '@solidjs/web':
         specifier: ^2.0.3
         version: 2.0.3(solid-js@2.0.3)
@@ -1213,8 +1213,8 @@ packages:
   '@oxc-project/types@0.156.0':
     resolution: {integrity: sha512-1Duyg48TdJNdyhEB8Xn1L36bT9Pv6GUtlKjHxOys8xkaF/rQq3XJE+bAurSK/AgIz5mGFsb77cn9Pb20+WCScw==}
 
-  '@plunz/storybook@https://codeload.github.com/plu-nz/lib.storybook/tar.gz/9d6dc6758a6e777d4c58a58bff4614e36d300b5a':
-    resolution: {gitHosted: true, integrity: sha512-YD0hZDU5iwMjWaGVQBL9PpHN3LHyhvXyr4e8848X5XI5XTJFFIkXaRROJLG41nRWTgBcqKVWt3DW1X/FfEhfOg==, tarball: https://codeload.github.com/plu-nz/lib.storybook/tar.gz/9d6dc6758a6e777d4c58a58bff4614e36d300b5a}
+  '@plunz/storybook@https://codeload.github.com/plu-nz/lib.storybook/tar.gz/577a0d1f23abc40eb838082e818f54d9c51d6519':
+    resolution: {gitHosted: true, integrity: sha512-8unn5VHtWkntSAp1IB9cF/Ba3m6+MvNcVcyzgJdGCd3Q6bIgQ/EAKkQgV7VUKO+HZf6qxTS0A8n8Qk04f5tKFQ==, tarball: https://codeload.github.com/plu-nz/lib.storybook/tar.gz/577a0d1f23abc40eb838082e818f54d9c51d6519}
     version: 0.1.0
     peerDependencies:
       '@solidjs/web': ^2.0.0
@@ -3967,7 +3967,7 @@ snapshots:
 
   '@oxc-project/types@0.156.0': {}
 
-  '@plunz/storybook@https://codeload.github.com/plu-nz/lib.storybook/tar.gz/9d6dc6758a6e777d4c58a58bff4614e36d300b5a(@solidjs/web@2.0.3(solid-js@2.0.3))(solid-js@2.0.3)':
+  '@plunz/storybook@https://codeload.github.com/plu-nz/lib.storybook/tar.gz/577a0d1f23abc40eb838082e818f54d9c51d6519(@solidjs/web@2.0.3(solid-js@2.0.3))(solid-js@2.0.3)':
     dependencies:
       '@solidjs/web': 2.0.3(solid-js@2.0.3)
       solid-js: 2.0.3
