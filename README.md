@@ -11,7 +11,7 @@ A receipt photo can be scanned with Google Gemini. Google may use photos submitt
 - SolidJS 2, TypeScript, and Vite for the UI. Shared `Theme` and `Button` primitives come from a pinned `@plunz/storybook` Git revision; bill-specific controls remain local.
 - A small Hono Worker serves the SPA and `/api/scan`; Google Gemini 3.1 Flash-Lite reads a receipt image.
 - No database, object storage, or self-hosted service. The scan endpoint is limited to five requests per minute per source IP and images under 4 MB. Free AI quota exhaustion returns an error; manual entry remains available. Check [Google Gemini pricing](https://ai.google.dev/gemini-api/docs/pricing) before changing models or account plan.
-- Darkppuccin colors and a square product mark follow the [PLUNZ visual proposal](https://github.com/plu-nz/.github/pull/2). The UI is mobile first with bottom step navigation.
+- Tinta colors and a square product mark follow the [PLUNZ visual proposal](https://github.com/plu-nz/.github/pull/2). The UI is mobile first with bottom step navigation.
 - Split follows the [PLUNZ mobile-first and installability decision](https://github.com/plu-nz/.github/blob/main/decisions/2026-11-04-mobile-first-and-installable-apps.md): a web app manifest, product icons, and a service worker let the app launch from a smartphone home screen.
 
 ## Installation and offline use

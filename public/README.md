@@ -1,6 +1,6 @@
 # Public assets
 
-- [favicon.svg](favicon.svg) is Split's square product mark on an opaque Darkppuccin background.
+- [favicon.svg](favicon.svg) is Split's square product mark on an opaque Tinta background.
 - [icon-192.png](icon-192.png) and [icon-512.png](icon-512.png) are install icons; [icon-maskable-512.png](icon-maskable-512.png) keeps the artwork inside the safe area for adaptive launchers.
 - [apple-touch-icon.png](apple-touch-icon.png) is the iOS home-screen icon.
 
