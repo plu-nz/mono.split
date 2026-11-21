@@ -25,6 +25,13 @@ export function parseMoney(value: string): number | null {
   return Number.isSafeInteger(cents) && cents >= 0 ? cents : null;
 }
 
+export function moneyFromDigits(value: string): number | null {
+  const digits = value.replace(/\D/g, '').replace(/^0+/, '');
+  if (!digits) return 0;
+  if (digits.length > 10) return null;
+  return Number(digits);
+}
+
 export function formatMoney(cents: number): string {
   return (cents / 100).toFixed(2);
 }

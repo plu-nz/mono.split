@@ -22,3 +22,11 @@ describe('bill allocation', () => {
     expect(splitBill([{ id: 'x', name: 'Tea', quantity: 2, unitCents: 299, assignedTo: [] }], [{ id: 'a', name: 'A' }])).toEqual({ totals: { a: 0 }, unassigned: ['x'], totalCents: 598 });
   });
 });
+
+it('treats typed money digits as minor units', async () => {
+  const { moneyFromDigits } = await import('./core');
+  expect(moneyFromDigits('1000')).toBe(1000);
+  expect(moneyFromDigits('0.01')).toBe(1);
+  expect(moneyFromDigits('')).toBe(0);
+  expect(moneyFromDigits('12345678901')).toBeNull();
+});
