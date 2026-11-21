@@ -1,6 +1,6 @@
 # Split
 
-**Split** helps a group divide a large restaurant bill without accounts. Open [split.plu.nz](https://split.plu.nz/), add items and people, optionally enter the printed total as a check, assign each line to the people who shared it, and copy the result. The sum of person totals always matches the full bill in integer minor units when every item is assigned.
+**Split** helps a group divide a large restaurant bill without accounts. Open [split.plu.nz](https://split.plu.nz/), add items and people, assign each line to the people who shared it, and copy the result. The sum of person totals always matches the full bill in integer minor units when every item is assigned.
 
 The interface supports English, Portuguese, and Spanish. It follows the browser language by default, falls back to English, and shares a manually selected language with PLUNZ web apps on `plu.nz` in the same browser.
 
@@ -8,7 +8,7 @@ A receipt photo can be scanned with Google Gemini. Google may use photos submitt
 
 ## Stack and cost
 
-- SolidJS 2, TypeScript, and Vite for the UI. Shared `Theme`, `Card`, `TextField`, and `Button` primitives come from a pinned `@plunz/storybook` Git revision; bill-specific controls remain local.
+- SolidJS 2, TypeScript, and Vite for the UI. Shared `Theme` and `Button` primitives come from a pinned `@plunz/storybook` Git revision; bill-specific controls remain local.
 - A small Hono Worker serves the SPA and `/api/scan`; Google Gemini 3.1 Flash-Lite reads a receipt image.
 - No database, object storage, or self-hosted service. The scan endpoint is limited to five requests per minute per source IP and images under 4 MB. Free AI quota exhaustion returns an error; manual entry remains available. Check [Google Gemini pricing](https://ai.google.dev/gemini-api/docs/pricing) before changing models or account plan.
 - Darkppuccin colors and a square product mark follow the [PLUNZ visual proposal](https://github.com/plu-nz/.github/pull/2). The UI is mobile first with bottom step navigation.

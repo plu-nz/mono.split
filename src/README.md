@@ -1,6 +1,6 @@
 # Source index
 
-- [App.tsx](App.tsx) renders bill entry, photo scan review, printed-total check, people, allocation, local draft management, and installation guidance.
+- [App.tsx](App.tsx) renders bill entry, photo scan review, people, allocation, local draft management, and installation guidance.
 - [locale.ts](locale.ts) contains English, Portuguese, and Spanish interface copy and system-language detection; [locale.test.ts](locale.test.ts) verifies locale selection.
 - [locale-preference.ts](locale-preference.ts) reads and writes the shared `plu.nz` language cookie; [locale-preference.test.ts](locale-preference.test.ts) verifies migration and precedence.
 - [style.css](style.css) contains the mobile-first Darkppuccin interface styles and product-specific rules layered over `@plunz/storybook/styles.css`.
